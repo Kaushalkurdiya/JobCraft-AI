@@ -3,10 +3,15 @@ const cookieParser = require("cookie-parser")
 const cors = require("cors")
 
 const app = express()
+app.set("trust proxy", 1)
 
+app.use(cors({
+  origin: "https://jobcraft-ai-1.onrender.com",
+  credentials: true
+}))
 app.use(express.json())
 app.use(cookieParser())
-app.use(cors());
+
 
 /* require all the routes here */
 const authRouter = require("./routes/auth.routes")
